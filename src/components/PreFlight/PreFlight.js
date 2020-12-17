@@ -4,6 +4,7 @@ import axios from 'axios';
 import './PreFlight.css';
 
 const PreFlight = ({ token }) => {
+    
 	return (
 		<div>
 			<form onSubmit={handleSubmit} className='preflight-form'>
@@ -66,9 +67,10 @@ const PreFlight = ({ token }) => {
 				<label htmlFor='takeoff_clear'>Takeoff Area Clear:</label>
 				<input
 					onChange={handleChange}
+					type='checkbox'
 					name='takeoff_clear'
 					id='takeoff_clear'
-					value={detail.takeoff_clear}
+					value={true}
 					placeholder='Takeoff Area Clear'
 				/>
 			</form>

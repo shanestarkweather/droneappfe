@@ -5,6 +5,7 @@ import SignUp from './components/Auth/SignUp';
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import './App.css';
+import PreFlightList from './components/PreFlightList/PreFlightList';
 
 function App() {
 	const [token, setToken] = useState(null);
@@ -21,10 +22,17 @@ function App() {
 					}}
 				/>
 				<Route
-					path='/'
+					path='/login'
 					exact
 					render={() => {
-						return <Home token={token} />;
+						return <Login setToken={setToken} />;
+					}}
+				/>
+				<Route
+					path='/preflights'
+					exact
+					render={() => {
+						return <PreFlightList token={token} />;
 					}}
 				/>
 			</main>

@@ -9,7 +9,7 @@ const Header = ({ token }) => {
 			<nav>
 				<Link to='/'>Home Page</Link>
 				<Link to='/login'>Login</Link>
-				<Link to='/preflight'>Pre-Flight</Link>
+				<Link to='/preflights'>Pre-Flight</Link>
 				<Link to='/flightlog'>Flight Log</Link>
 				<Link to='/recordsearch'>Find a Record</Link>
 			</nav>

@@ -4,7 +4,7 @@ import APIURL from '../../config';
 import { Redirect } from 'react-router-dom';
 import Axios from 'axios';
 
-const Login = ({ setToken, setUser }) => {
+const Login = ({ setToken }) => {
 	const signin = {
 		email: '',
 		password: '',
@@ -19,12 +19,12 @@ const Login = ({ setToken, setUser }) => {
 		event.preventDefault();
 		setFormState(signin);
 		Axios({
-			url: `${APIURL}api-authlogin/?next=/users/`,
+			url: `${APIURL}token/login/`,
 			method: 'POST',
 			data: formState,
 		}).then((res) => {
-			setToken(res.data.token);
-			setUser(res.data.user);
+			setToken(res.data.auth_token);
+			localStorage.setItem('token', res.data.auth_token);
 			setRedirect(true);
 		});
 	};
