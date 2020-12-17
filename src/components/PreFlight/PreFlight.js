@@ -5,9 +5,13 @@ import './PreFlight.css';
 
 const PreFlight = ({ token }) => {
     
-    return <div>
-
-    </div>;
+    return (
+    <div>
+        <form onSubmit={handleSubmit} className='preFlight-form'>
+            
+        </form>
+    </div>
+    );
 };
 
 export default PreFlight;
