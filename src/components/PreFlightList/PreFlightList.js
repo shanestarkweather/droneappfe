@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import APIURL from '../../config';
 import Axios from 'axios';
+import './PreFlightList.css';
 
 const PreFlightList = ({ token }) => {
 	const history = useHistory();
@@ -26,10 +27,10 @@ const PreFlightList = ({ token }) => {
 	}
 	return (
 		<div>
-			<button onClick={() => history.push('/preflights/new')}>
+			<button className='new-button' onClick={() => history.push('/preflights/new')}>
 				New Pre-Flight
 			</button>
-			<div>
+			<div className='preflight-list'>
 				{list.map((preflight) => {
 					return (
 						<Link to={`/preflights/${preflight.id}`}>

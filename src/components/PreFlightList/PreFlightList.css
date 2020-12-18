@@ -1,0 +1,15 @@
+.preflight-list {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+	padding: 2vw;
+}
+
+.preflight-list a {
+	margin: 1vw;
+}
+
+.new-button {
+	margin: 1vw;
+}

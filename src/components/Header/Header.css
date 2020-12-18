@@ -1,0 +1,19 @@
+.header {
+	background-color: hsla(187, 91%, 67%, 0.753);
+	padding: 1vw;
+	margin: 0 auto;
+	display: block;
+}
+
+.header h1 a {
+	color: white;
+}
+
+.header a {
+	color: #fff;
+	background-color: blue;
+	padding: 0.5vw;
+	line-height: 1.5;
+	width: 96vw;
+	display: block;
+}

@@ -1,0 +1,30 @@
+.preflight-form {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-items: center;
+	align-items: center;
+	padding: 2vw;
+	text-align: left;
+	width: 50vw;
+	margin: 0 auto;
+}
+
+.date-holder {
+	flex-direction: column;
+	padding: 2vw;
+}
+
+.info {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 50vw;
+}
+
+.form-input {
+	width: 23vw;
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+}
