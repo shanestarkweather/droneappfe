@@ -14,24 +14,26 @@ const PreFlightList = ({ token }) => {
 			},
 		})
 			.then((res) => {
-				console.log(res);
 				setList(res.data);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-    }, []);
-    if (!list){
-        return null
-    }
+	}, []);
+	if (!list) {
+		return null;
+	}
 	return (
-    <div>
-        {list.map((preflight) => {
-            return (
-                <Link to={`/preflights/${preflight.id}`}>{preflight.date} {preflight.time} {preflight.location}</Link>
-            )
-        })}
-    </div>)
+		<div>
+			{list.map((preflight) => {
+				return (
+					<Link to={`/preflights/${preflight.id}`}>
+						{preflight.date} {preflight.time} {preflight.location}
+					</Link>
+				);
+			})}
+		</div>
+	);
 };
 
 export default PreFlightList;

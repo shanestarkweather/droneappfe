@@ -6,6 +6,7 @@ import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import './App.css';
 import PreFlightList from './components/PreFlightList/PreFlightList';
+import PreFlightDetail from './components/PreFlightDetail/PreFlightDetail';
 
 function App() {
 	const [token, setToken] = useState(null);
@@ -33,6 +34,13 @@ function App() {
 					exact
 					render={() => {
 						return <PreFlightList token={token} />;
+					}}
+				/>
+				<Route
+					path='/preflights/:id'
+					exact
+					render={(routerProps) => {
+						return <PreFlightDetail token={token} match={routerProps.match} />;
 					}}
 				/>
 			</main>
