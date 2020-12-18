@@ -40,7 +40,7 @@ const SignUp = () => {
 	};
 
 	if (redirect) {
-		return <Redirect to='/login' />;
+		return <Redirect to='/login/' />;
 	}
 	return (
 		<div>

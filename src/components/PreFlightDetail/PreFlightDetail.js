@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import './PreFlightDetail.css';
 import Axios from 'axios';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import APIURL from '../../config';
 
 const PreFlightDetail = ({ match }) => {
 	const history = useHistory();
 	const [detail, setDetail] = useState(null);
+	const token = localStorage.getItem('token');
 	useEffect(() => {
 		Axios({
 			url: `${APIURL}preflights/${match.params.id}`,
 			method: 'GET',
 			headers: {
-				Authorization: `Token: ${localStorage.getItem('token')}`,
+				Authorization: `Token ${token}`,
 			},
 		})
 			.then((res) => {
@@ -22,18 +23,34 @@ const PreFlightDetail = ({ match }) => {
 			.catch((err) => {
 				console.log(err);
 			});
-	});
+	}, []);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		Axios({
-			url: `${APIURL}preflights/${match.params.id}`,
+			url: `${APIURL}preflights/${match.params.id}/`,
 			method: 'PUT',
-			headers: { Authorization: `Token: ${localStorage.getItem('token')}` },
+			headers: { Authorization: `Token ${token}` },
 			data: detail,
 		}).then(() => {
 			history.push('/');
 		});
+	};
+
+	const handleDelete = (event) => {
+		Axios({
+			url: `${APIURL}preflights/${match.params.id}/`,
+			method: 'DELETE',
+			headers: {
+				Authorization: `Token ${token}`,
+			},
+		})
+			.then(() => {
+				history.push('/');
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	const handleChange = (event) => {
@@ -121,7 +138,9 @@ const PreFlightDetail = ({ match }) => {
 						value={true}
 						placeholder='Takeoff Area Clear'
 					/>
+					<button type='submit'>Update Log</button>
 				</form>
+				<button onClick={handleDelete}>Delete This Log</button>
 			</div>
 		</div>
 	);

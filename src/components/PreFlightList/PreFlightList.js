@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import APIURL from '../../config';
 import Axios from 'axios';
 
 const PreFlightList = ({ token }) => {
+	const history = useHistory();
 	const [list, setList] = useState(null);
 	useEffect(() => {
 		Axios({
@@ -25,13 +26,18 @@ const PreFlightList = ({ token }) => {
 	}
 	return (
 		<div>
-			{list.map((preflight) => {
-				return (
-					<Link to={`/preflights/${preflight.id}`}>
-						{preflight.date} {preflight.time} {preflight.location}
-					</Link>
-				);
-			})}
+			<button onClick={() => history.push('/preflights/new')}>
+				New Pre-Flight
+			</button>
+			<div>
+				{list.map((preflight) => {
+					return (
+						<Link to={`/preflights/${preflight.id}`}>
+							{preflight.date} {preflight.time} {preflight.location}
+						</Link>
+					);
+				})}
+			</div>
 		</div>
 	);
 };

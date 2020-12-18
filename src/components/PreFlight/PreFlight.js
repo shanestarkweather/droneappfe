@@ -1,9 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import APIURL from '../../config';
-import axios from 'axios';
+import Axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import './PreFlight.css';
 
-const PreFlight = ({ token }) => {
+const PreFlight = () => {
+	const history = useHistory();
+	const token = localStorage.getItem('token');
+	const [newPreFlight, setNewPreFlight] = useState({
+		pilot: '',
+		date: '',
+		time: '',
+		location: '',
+		drone_reg: '',
+		weather: '',
+		obstructions: '',
+		takeoff_clear: 'false',
+	});
+
+	const handleChange = (event) => {
+		event.persist();
+		setNewPreFlight({
+			...newPreFlight,
+			[event.target.name]: event.target.value,
+		});
+	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		Axios({
+			url: `${APIURL}preflights/`,
+			method: 'POST',
+			headers: {
+				Authorization: `Token ${token}`,
+			},
+			data: newPreFlight,
+		});
+	};
+
 	return (
 		<div>
 			<form onSubmit={handleSubmit} className='preflight-form'>
@@ -12,7 +46,7 @@ const PreFlight = ({ token }) => {
 					onChange={handleChange}
 					name='pilot'
 					id='pilot'
-					value={detail.pilot}
+					value={newPreFlight.pilot}
 					placeholder='Pilot'
 				/>
 				<label htmlFor='date'>Date:</label>
@@ -20,7 +54,7 @@ const PreFlight = ({ token }) => {
 					onChange={handleChange}
 					name='date'
 					id='date'
-					value={detail.date}
+					value={newPreFlight.date}
 					placeholder='Date'
 				/>
 				<label htmlFor='time'>Time:</label>
@@ -28,7 +62,7 @@ const PreFlight = ({ token }) => {
 					onChange={handleChange}
 					name='time'
 					id='time'
-					value={detail.time}
+					value={newPreFlight.time}
 					placeholder='Time'
 				/>
 				<label htmlFor='location'>Location:</label>
@@ -36,7 +70,7 @@ const PreFlight = ({ token }) => {
 					onChange={handleChange}
 					name='location'
 					id='location'
-					value={detail.location}
+					value={newPreFlight.location}
 					placeholder='Location'
 				/>
 				<label htmlFor='drone_reg'>Drone Registration:</label>
@@ -44,7 +78,7 @@ const PreFlight = ({ token }) => {
 					onChange={handleChange}
 					name='drone_reg'
 					id='drone_reg'
-					value={detail.drone_reg}
+					value={newPreFlight.drone_reg}
 					placeholder='Drone Registration'
 				/>
 				<label htmlFor='weather'>Weather:</label>
@@ -52,7 +86,7 @@ const PreFlight = ({ token }) => {
 					onChange={handleChange}
 					name='weather'
 					id='weather'
-					value={detail.weather}
+					value={newPreFlight.weather}
 					placeholder='Weather'
 				/>
 				<label htmlFor='obstructions'>Obstructions:</label>
@@ -60,7 +94,7 @@ const PreFlight = ({ token }) => {
 					onChange={handleChange}
 					name='obstructions'
 					id='obstructions'
-					value={detail.obstructions}
+					value={newPreFlight.obstructions}
 					placeholder='Obstructions'
 				/>
 				<label htmlFor='takeoff_clear'>Takeoff Area Clear:</label>
